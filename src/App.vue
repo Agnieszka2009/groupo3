@@ -24,7 +24,7 @@ import HeaderApp from 'C:/Users/aborkowska/groupo3/src/components/HeaderApp.vue'
 import MenuApp from 'C:/Users/aborkowska/groupo3/src/components/MenuApp.vue';
 import FooterApp from 'C:/Users/aborkowska/groupo3/src/components/FooterApp.vue';
 
-// comentasmos
+// comentasmosotravez
 
 export default {
   components: {
