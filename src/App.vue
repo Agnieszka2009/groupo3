@@ -1,4 +1,6 @@
 <template>
+<div>
+    <!-- javi test -->
     <header>
         <HeaderApp />
     </header>
@@ -15,6 +17,7 @@
     <footer>
         <FooterApp />
     </footer>
+</div>
 </template>
 
 
