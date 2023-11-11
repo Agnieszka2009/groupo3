@@ -1,34 +1,170 @@
 <template>
-    <div>
-      <h2 class="text-2xl font-bold mb-4">Students List</h2>
-      <ul>
-        <li v-for="student in students" :key="student.id">
-          <router-link :to="'/students/' + student.id">{{ student.name }}</router-link>
-        </li>
-      </ul>
-      <StudentView></StudentView>
-      <router-view></router-view>
-    </div>
-  </template>
-  
-  <script>
-  // Importa el componente StudentView
-  import StudentForm from '../components/StudentForm.vue';
-  
-  export default {
-    data() {
-      return {
-        students: [
-          { id: 1, name: 'John Doe' },
-          { id: 2, name: 'Jane Smith' },
-          // Otras entradas de estudiantes aquí...
-        ]
-      }
-    },
-    components: {
-      // Registra el componente para usarlo en esta vista
-      // StudentForm
+  <div class="students-container">
+    <h1>Students List</h1>
+
+    <!-- Button to show the student form -->
+    <button @click.prevent="changeVisibilty">Add Student</button>
+
+    <!-- Form to add a new student -->
+    <!-- <div v-if="isStudentFormVisible" class="student-form">
+      <h2>Add Student</h2>
+      <form @submit.prevent="addStudent">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input id="name" v-model="newStudent.name" placeholder="Enter name" />
+        </div>
+        <div class="form-group">
+          <label for="level">Level:</label>
+          <input id="level" v-model="newStudent.level" placeholder="Enter level" />
+        </div>
+        <button type="submit">Save</button>
+      </form>
+    </div> -->
+
+    <!-- List of students -->
+    <!-- <StudentList :students="students" /> -->
+<StudentForm v-if="isStudentFormVisible"></StudentForm>
+</div>
+</template>
+
+<script>
+// import { ref, onMounted } from "vue";
+// import StudentList from "C:/Users/aborkowska/groupo3/src/components/StudentList.vue";
+// import { db, collection, addDoc, onSnapshot } from "C:/Users/aborkowska/groupo3/src/firebase.js";
+// import { collection, addDoc, onSnapshot } from 'firebase/firestore'
+// import { db } from "C:/Users/aborkowska/groupo3/src/firebase.js";
+import StudentForm from "C:/Users/aborkowska/groupo3/src/components/StudentForm.vue";
+
+
+export default {
+  components: {
+    // StudentList,
+    StudentForm
+  },
+  // setup() {
+  //   // const isStudentFormVisible = ref(false);
+  //   const newStudent = ref({ name: "", level: "" });
+  //   const students = ref([]);
+
+  //   // const showStudentForm = () => {
+  //   //   isStudentFormVisible.value = true;
+  //   // };
+
+  //   const addStudent = async () => {
+  //     try {
+  //       const studentData = {
+  //         name: newStudent.value.name,
+  //         level: newStudent.value.level,
+  //       };
+  //       // const docRef = await addDoc(collection(db, "students"), studentData);
+  //       students.value.push({ id: docRef.id, ...studentData });
+  //       newStudent.value = { name: "", level: "" };
+  //       // isStudentFormVisible.value = false;
+  //     } catch (error) {
+  //       console.error("Error adding student: ", error);
+  //     }
+  //   };
+
+  //   // onMounted(() => {
+  //   //   const studentsCollection = collection(db, "students");
+  //   //   const unsubscribe = onSnapshot(studentsCollection, (querySnapshot) => {
+  //   //     students.value = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  //   //   });
+
+  //   //   return () => unsubscribe(); // Unsubscribe from Firestore updates when the component is unmounted
+  //   // });
+
+  //   return {
+  //     // isStudentFormVisible,
+  //     newStudent,
+  //     // showStudentForm,
+  //     addStudent,
+  //     students,
+  //   };
+  // },
+ 
+  data(){
+    return{
+      isStudentFormVisible: false
     }
-  }
-  </script>
-  
+  },
+  methods:{
+  changeVisibilty(){
+ console.log(this.isStudentFormVisible)
+ this.isStudentFormVisible =  !this.isStudentFormVisible 
+  console.log(this.isStudentFormVisible)
+}
+  },
+};
+</script>
+
+<style scoped>
+.students-container {
+  max-width: 100%;
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.student-form {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+</style>

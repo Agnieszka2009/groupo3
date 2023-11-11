@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "public",
+			"path": "../../../groupo3 - Copy/public"
+		},
+		{
+			"name": "src",
+			"path": "../../../groupo3 - Copy/src"
+		},
+		{
+			"name": "groupo3",
+			"path": "../.."
+		}
+	],
+	"settings": {}
+}
